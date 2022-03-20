@@ -1,5 +1,7 @@
 package com.project.digitalworld.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import com.project.digitalworld.entity.User;
 import com.project.digitalworld.repository.StudentRepository;
 import com.project.digitalworld.repository.TeacherRepository;
 import com.project.digitalworld.repository.UserRepository;
+import com.project.digitalworld.utils.Gender;
 
 @RestController
 @RequestMapping("")
@@ -40,16 +43,25 @@ public class TestController {
 	@GetMapping("/all")
 	public String all() {
 		Student s= new Student();
-		s.setLogin("wiss");
+		s.setUsername("wiss2");
 		s.setPass("pass");
+		s.setFirstName("wissal");
+		s.setLastName("salhi");
+		s.setBirthDate(new Date("7/18/1999"));
+		s.setGender("female");
 		s.setScore(9);
+		s.setRole("student");
 		studentRepository.save(s);
 		
 		Teacher t= new Teacher();
-		t.setLogin("tess");
+		t.setUsername("tess");
 		t.setPass("pass");
+		t.setFirstName("nawres");
+		t.setLastName("salhi");
+		t.setBirthDate(new Date("7/18/1991"));
+		t.setGender("female");
 		t.setCIN(99983);
-		teacherRepository.save(t);
+		//teacherRepository.save(t);
 		
 		return ("<h1>Done</h1>");
 	}
@@ -57,7 +69,7 @@ public class TestController {
 	@GetMapping("/all/{id}")
 	public User get(@PathVariable Integer id ) {
 		Student s= new Student();
-		s.setLogin("test");
+		s.setUsername("test");
 		s.setPass("pass");
 		s.setScore(9);
 		//userRepository.save(s);
