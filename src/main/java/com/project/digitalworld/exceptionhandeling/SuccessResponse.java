@@ -1,10 +1,12 @@
 package com.project.digitalworld.exceptionhandeling;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class SuccessResponse {
 	
 	
@@ -18,6 +20,8 @@ public class SuccessResponse {
 		this.message = message;
 		this.timeStamp = timeStamp;
 	}
+
+
 
 	
 }

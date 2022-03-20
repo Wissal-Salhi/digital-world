@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.digitalworld.dto.StudentResponseDTO;
 import com.project.digitalworld.dto.UserLoginDTO;
+import com.project.digitalworld.entity.Student;
 import com.project.digitalworld.entity.User;
+import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
 import com.project.digitalworld.repository.UserRepository;
+import com.project.digitalworld.service.AuthService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,17 +28,15 @@ public class AuthController {
 	private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 	
 	@Autowired
-	UserRepository userRepository;
+	private AuthService authService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<SuccessResponse> login(@RequestBody UserLoginDTO userLoginDTO) {
-		
+	public ResponseEntity<SuccessResponse> login(@RequestBody UserLoginDTO userLoginDTO) throws BadRequestException {
 		log.info("calling method : login()");
-		
-		User user= userRepository.findByUsernameAndPass(userLoginDTO.getUsername(), userLoginDTO.getPass());
-		
-		SuccessResponse response= new SuccessResponse(user,System.currentTimeMillis());
+		SuccessResponse response = authService.login(userLoginDTO);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	
 	
 }

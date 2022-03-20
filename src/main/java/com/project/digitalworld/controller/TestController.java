@@ -43,7 +43,7 @@ public class TestController {
 	@GetMapping("/all")
 	public String all() {
 		Student s= new Student();
-		s.setUsername("wiss2");
+		s.setUsername("wiss");
 		s.setPass("pass");
 		s.setFirstName("wissal");
 		s.setLastName("salhi");
@@ -61,7 +61,8 @@ public class TestController {
 		t.setBirthDate(new Date("7/18/1991"));
 		t.setGender("female");
 		t.setCIN(99983);
-		//teacherRepository.save(t);
+		t.setRole("teacher");
+		teacherRepository.save(t);
 		
 		return ("<h1>Done</h1>");
 	}
