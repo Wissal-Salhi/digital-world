@@ -27,21 +27,21 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name="username",unique=true)
+	@Column(name="username",length=8,unique=true)
 	@NotBlank(message = "Username is mandatory")
 	private String username;
 	
 	@NotBlank(message = "Firstname is mandatory")
-    private String firstName;
+    private String firstname;
 	
     @NotBlank(message = "Lastname is mandatory")
-    private String lastName;
+    private String lastname;
     
     private String avatar = "";
     
     @NotNull(message = "Birth date is mandatory")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date birthDate;
+    private Date birthdate;
     
     @NotBlank(message = "Password is mandatory")
 	private String pass;

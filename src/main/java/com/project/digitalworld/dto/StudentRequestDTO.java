@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class StudentRequestDTO {
 	
+	
 	@NotBlank(message = "Username is mandatory")
 	private String username;
 	
