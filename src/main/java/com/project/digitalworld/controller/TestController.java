@@ -2,22 +2,24 @@ package com.project.digitalworld.controller;
 
 import java.util.Date;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.digitalworld.dto.StudentResponseDTO;
 import com.project.digitalworld.entity.Student;
 import com.project.digitalworld.entity.Teacher;
 import com.project.digitalworld.entity.User;
 import com.project.digitalworld.repository.StudentRepository;
 import com.project.digitalworld.repository.TeacherRepository;
 import com.project.digitalworld.repository.UserRepository;
-import com.project.digitalworld.utils.Gender;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/test")
 public class TestController {
 	
 	@Autowired
@@ -29,6 +31,9 @@ public class TestController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	private ModelMapper modelmapper;
+	
 	
 	@GetMapping("/admin")
 	public String admin() {
@@ -38,6 +43,20 @@ public class TestController {
 	@GetMapping("/teacher")
 	public String teacher() {
 		return ("<h1>Hi there teacher</h1>");
+	}
+	
+	@PostMapping("/users")
+	public String createUser() {
+		User u = new User();
+		u.setUsername("user");
+		u.setPass("pass");
+		u.setFirstName("wissal");
+		u.setLastName("salhi");
+		u.setBirthDate(new Date("7/18/1999"));
+		u.setGender("female");
+		u.setRole("student");
+		userRepository.save(u);
+		return "saved";
 	}
 	
 	@GetMapping("/all")
@@ -76,6 +95,13 @@ public class TestController {
 		//userRepository.save(s);
 		return userRepository.findById(id).get();
 		//return ("<h1>deleted</h1>");
+	}
+	
+	@GetMapping("/student/{id}")
+	public StudentResponseDTO getStudent(@PathVariable Integer id ) {
+		Student s= studentRepository.findById(id).get();
+		StudentResponseDTO res=  modelmapper.map(s, StudentResponseDTO.class);
+		return res;
 	}
 
 }

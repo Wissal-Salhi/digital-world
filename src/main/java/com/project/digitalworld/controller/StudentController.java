@@ -1,5 +1,7 @@
 package com.project.digitalworld.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.digitalworld.dto.StudentResponseDTO;
-import com.project.digitalworld.dto.UserLoginDTO;
-import com.project.digitalworld.entity.Student;
-import com.project.digitalworld.entity.User;
-import com.project.digitalworld.exceptionhandeling.BadRequestException;
+import com.project.digitalworld.dto.StudentRequestDTO;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
-import com.project.digitalworld.repository.UserRepository;
-import com.project.digitalworld.service.AuthService;
+import com.project.digitalworld.service.StudentService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("")
-public class AuthController {
-
+@RequestMapping("students")
+public class StudentController {
+	
 	private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 	
 	@Autowired
-	private AuthService authService;
+	private StudentService studentService;
 	
-	@PostMapping("/login")
-	public ResponseEntity<SuccessResponse> login(@RequestBody UserLoginDTO userLoginDTO) throws Exception {
-		log.info("calling method : login()");
-		SuccessResponse response = authService.login(userLoginDTO);
+	
+	@PostMapping("")
+	public ResponseEntity<SuccessResponse> createStudent(@Valid @RequestBody StudentRequestDTO student){
+		
+		log.info("calling method : createStudent()");
+		
+		studentService.save(student);
+		
+		SuccessResponse response= new SuccessResponse(student,System.currentTimeMillis());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
-	
-	
+
 }

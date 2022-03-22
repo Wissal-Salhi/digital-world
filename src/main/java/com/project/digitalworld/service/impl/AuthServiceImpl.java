@@ -2,12 +2,19 @@ package com.project.digitalworld.service.impl;
 
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.digitalworld.dto.AdminResponseDTO;
+import com.project.digitalworld.dto.ManagerResponseDTO;
 import com.project.digitalworld.dto.StudentResponseDTO;
+import com.project.digitalworld.dto.TeacherResponseDTO;
 import com.project.digitalworld.dto.UserLoginDTO;
+import com.project.digitalworld.entity.Admin;
+import com.project.digitalworld.entity.Manager;
 import com.project.digitalworld.entity.Student;
+import com.project.digitalworld.entity.Teacher;
 import com.project.digitalworld.entity.User;
 import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
@@ -19,6 +26,9 @@ public class AuthServiceImpl implements AuthService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	private ModelMapper modelmapper;
 	
 	
 	public User findByUsernameAndPass (String name, String pass) throws BadRequestException {
@@ -35,29 +45,42 @@ public class AuthServiceImpl implements AuthService {
 	
 	
 	@Override
-	public SuccessResponse login(UserLoginDTO userLoginDTO) throws BadRequestException {
+	public SuccessResponse login(UserLoginDTO userLoginDTO) throws Exception {
 		
 		User user= findByUsernameAndPass(userLoginDTO.getUsername(), userLoginDTO.getPass());
 		SuccessResponse response= new SuccessResponse();
 		
+		
 		if (user.getRole().equals("student")) {
-			//add object mapper
-			Student st= (Student) user;
-			StudentResponseDTO s = new StudentResponseDTO();
-			s.setUsername(user.getUsername());
-			s.setGender(user.getGender());
-			s.setScore(st.getScore());
-			response.setMessage(s);
+			
+			Student s= (Student) user;
+			StudentResponseDTO res = modelmapper.map(s, StudentResponseDTO.class);
+			response.setMessage(res);
 			
 		}else if (user.getRole().equals("teacher")) {
-			System.out.println("teacher");
+			
+			Teacher t= (Teacher) user;
+			TeacherResponseDTO res = modelmapper.map(t, TeacherResponseDTO.class);
+			response.setMessage(res);
+			
 		}else if (user.getRole().equals("manager")) {
-			System.out.println("manager");
+
+			Manager m= (Manager) user;
+			ManagerResponseDTO res = modelmapper.map(m, ManagerResponseDTO.class);
+			response.setMessage(res);
+			
 		}else if (user.getRole().equals("admin")) {
-			System.out.println("admin");
+
+			Admin a= (Admin) user;
+			AdminResponseDTO res = modelmapper.map(a, AdminResponseDTO.class);
+			response.setMessage(res);
+			
+		}else {
+			throw new Exception("User has no Role");
 		}
 		
-		return null;
+		response.setTimeStamp(System.currentTimeMillis());
+		return response;
 	}
 
 }

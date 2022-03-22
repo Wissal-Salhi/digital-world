@@ -7,6 +7,6 @@ import com.project.digitalworld.exceptionhandeling.SuccessResponse;
 
 public interface AuthService {
 	
-	public SuccessResponse login(UserLoginDTO userLoginDTO) throws BadRequestException;
+	public SuccessResponse login(UserLoginDTO userLoginDTO) throws BadRequestException, Exception;
 
 }

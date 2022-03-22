@@ -12,6 +12,6 @@ import lombok.Setter;
 @Data
 public class Student extends User {
 
-	private Integer score;
+	private Integer score=0;
 
 }
