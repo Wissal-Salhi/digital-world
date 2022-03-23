@@ -23,11 +23,12 @@ import lombok.Data;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
+	//will remove all the validation, once all the entities are ready
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name="username",length=8,unique=true)
+	
 	@NotBlank(message = "Username is mandatory")
 	private String username;
 	
@@ -43,6 +44,7 @@ public class User {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date birthdate;
     
+    @Column(name="pass",length=8,unique=true)
     @NotBlank(message = "Password is mandatory")
 	private String pass;
 	

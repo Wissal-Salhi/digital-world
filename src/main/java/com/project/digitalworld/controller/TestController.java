@@ -53,9 +53,9 @@ public class TestController {
 		User u = new User();
 		u.setUsername("user");
 		u.setPass("pass");
-		u.setFirstName("wissal");
-		u.setLastName("salhi");
-		u.setBirthDate(new Date("7/18/1999"));
+		u.setFirstname("wissal");
+		u.setLastname("salhi");
+		u.setBirthdate(new Date("7/18/1999"));
 		u.setGender("female");
 		u.setRole("student");
 		userRepository.save(u);
@@ -67,9 +67,9 @@ public class TestController {
 		Student s= new Student();
 		s.setUsername("wiss");
 		s.setPass("pass");
-		s.setFirstName("wissal");
-		s.setLastName("salhi");
-		s.setBirthDate(new Date("7/18/1999"));
+		s.setFirstname("wissal");
+		s.setLastname("salhi");
+		s.setBirthdate(new Date("7/18/1999"));
 		s.setGender("female");
 		s.setScore(9);
 		s.setRole("student");
@@ -78,9 +78,9 @@ public class TestController {
 		Teacher t= new Teacher();
 		t.setUsername("tess");
 		t.setPass("pass");
-		t.setFirstName("nawres");
-		t.setLastName("salhi");
-		t.setBirthDate(new Date("7/18/1991"));
+		t.setFirstname("nawres");
+		t.setLastname("salhi");
+		t.setBirthdate(new Date("7/18/1991"));
 		t.setGender("female");
 		t.setCIN(99983);
 		t.setRole("teacher");

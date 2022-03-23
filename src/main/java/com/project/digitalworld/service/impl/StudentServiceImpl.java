@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.digitalworld.dto.StudentRequestDTO;
+import com.project.digitalworld.dto.StudentAddDTO;
 import com.project.digitalworld.entity.Student;
 import com.project.digitalworld.repository.StudentRepository;
 import com.project.digitalworld.service.StudentService;
@@ -19,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private ModelMapper modelmapper;
 
-	public void save(StudentRequestDTO studentDTO) {
+	public void save(StudentAddDTO studentDTO) {
 		
 		Student student = modelmapper.map(studentDTO, Student.class);
 		student.setRole("student");

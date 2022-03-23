@@ -113,7 +113,7 @@ public class ExceptionHandlerControllerAdvice {
 		return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
 	}
 
-	/*
+	
 	//ResponseEntity<ResponseDTO>
 	//@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(DataIntegrityViolationException.class)
@@ -139,7 +139,7 @@ public class ExceptionHandlerControllerAdvice {
 						"Validation errors",
 						400));
 		*/
-	/*	ExceptionResponse error= new ExceptionResponse();
+		ExceptionResponse error= new ExceptionResponse();
 			
 		error.setStatus(HttpStatus.BAD_REQUEST.value());
 		error.add(e.getMessage());
@@ -147,7 +147,7 @@ public class ExceptionHandlerControllerAdvice {
 		
 		return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST); 
 	}
-		*/
+		
 	
 /*	
 	@ExceptionHandler(Exception.class)

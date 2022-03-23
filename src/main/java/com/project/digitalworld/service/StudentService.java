@@ -1,12 +1,9 @@
 package com.project.digitalworld.service;
 
-
-import javax.validation.Valid;
-
-import com.project.digitalworld.dto.StudentRequestDTO;
+import com.project.digitalworld.dto.StudentAddDTO;
 
 public interface StudentService {
 
-	void save(@Valid StudentRequestDTO student);
+	void save(StudentAddDTO student);
 
 }

@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.digitalworld.dto.StudentAddDTO;
+import com.project.digitalworld.dto.TeacherAddDTO;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
-import com.project.digitalworld.service.StudentService;
+import com.project.digitalworld.service.TeacherService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("students")
-public class StudentController {
-	
-	private static Logger log = LoggerFactory.getLogger(Slf4j.class);
+@RequestMapping("teachers")
+public class TeacherController {
+
+private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 	
 	@Autowired
-	private StudentService studentService;
+	private TeacherService teacherService;
+	
 	
 	@PostMapping("")
-	public ResponseEntity<SuccessResponse> addStudent(@Valid @RequestBody StudentAddDTO student){
-		
-		log.info("calling method : addStudent()");
-		studentService.save(student);
-		SuccessResponse response= new SuccessResponse(student,System.currentTimeMillis());
+	public ResponseEntity<SuccessResponse> addTeacher(@Valid @RequestBody TeacherAddDTO teacher){
+		log.info("calling method : addTeacher()");
+		teacherService.save(teacher);
+		SuccessResponse response= new SuccessResponse(teacher,System.currentTimeMillis());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }
