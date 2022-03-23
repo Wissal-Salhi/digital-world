@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -28,7 +30,6 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	
 	@NotBlank(message = "Username is mandatory")
 	private String username;
 	
@@ -59,5 +60,10 @@ public class User {
 			 flags = Pattern.Flag.CASE_INSENSITIVE,
 			 message="Role must be in {teacher,student,admin,manager}")
 	 private String role;
+	 
+	 @JsonIgnore
+	 @ManyToOne
+	 @JoinColumn(name="school_id")
+	 private School school;
 	    
 }

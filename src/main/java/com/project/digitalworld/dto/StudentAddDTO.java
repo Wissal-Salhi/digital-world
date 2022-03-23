@@ -2,7 +2,6 @@ package com.project.digitalworld.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +33,9 @@ public class StudentAddDTO {
 	
 	@NotBlank(message = "Gender is mandatory")
 	private String gender;
+	
+	@NotBlank(message = "School Name is mandatory")
+	private String schoolName;
 	 
 	
 }

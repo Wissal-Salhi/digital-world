@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.digitalworld.dto.StudentAddDTO;
+import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
 import com.project.digitalworld.service.StudentService;
 
@@ -28,7 +29,7 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@PostMapping("")
-	public ResponseEntity<SuccessResponse> addStudent(@Valid @RequestBody StudentAddDTO student){
+	public ResponseEntity<SuccessResponse> addStudent(@Valid @RequestBody StudentAddDTO student) throws BadRequestException{
 		
 		log.info("calling method : addStudent()");
 		studentService.save(student);
