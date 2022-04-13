@@ -45,7 +45,7 @@ public class User {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date birthdate;
     
-    @Column(name="pass",length=8,unique=true)
+    @Column(name="pass",length=12,unique=true)
     @NotBlank(message = "Password is mandatory")
 	private String pass;
 	

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -36,6 +37,12 @@ public class StudentAddDTO {
 	
 	@NotBlank(message = "School Name is mandatory")
 	private String schoolName;
+	
+	@Pattern(regexp = "^[1-6]-.{1,}",
+			 flags = Pattern.Flag.CASE_INSENSITIVE,
+			 message="Class name must be level-name with level from 1 to 6. exp 1-A")
+	@NotBlank(message = "Class Name is mandatory")
+	private String className;
 	 
 	
 }

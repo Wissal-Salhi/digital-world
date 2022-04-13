@@ -13,9 +13,14 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class School {
 	
 	@Id
@@ -33,6 +38,11 @@ public class School {
 	@OneToMany(mappedBy = "school",
  			cascade= CascadeType.ALL)
 	private List<User> user;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "school",
+ 			cascade= CascadeType.ALL)
+	private List<Class> classes;
 	
 	 
 }

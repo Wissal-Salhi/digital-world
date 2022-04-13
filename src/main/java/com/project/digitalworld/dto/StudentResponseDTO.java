@@ -29,4 +29,8 @@ public class StudentResponseDTO {
 	private String role;
 	 
 	private Integer score;
+	
+	private String schoolName;
+	
+	private String className;
 }

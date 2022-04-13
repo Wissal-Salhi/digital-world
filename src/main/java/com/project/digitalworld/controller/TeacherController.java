@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.digitalworld.dto.TeacherAddDTO;
+import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
 import com.project.digitalworld.service.TeacherService;
 
@@ -29,7 +30,7 @@ private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 	
 	
 	@PostMapping("")
-	public ResponseEntity<SuccessResponse> addTeacher(@Valid @RequestBody TeacherAddDTO teacher){
+	public ResponseEntity<SuccessResponse> addTeacher(@Valid @RequestBody TeacherAddDTO teacher) throws BadRequestException{
 		log.info("calling method : addTeacher()");
 		teacherService.save(teacher);
 		SuccessResponse response= new SuccessResponse(teacher,System.currentTimeMillis());

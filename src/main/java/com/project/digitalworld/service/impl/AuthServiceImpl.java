@@ -1,5 +1,7 @@
 package com.project.digitalworld.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -15,6 +17,7 @@ import com.project.digitalworld.entity.Admin;
 import com.project.digitalworld.entity.Manager;
 import com.project.digitalworld.entity.Student;
 import com.project.digitalworld.entity.Teacher;
+import com.project.digitalworld.entity.Class;
 import com.project.digitalworld.entity.User;
 import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
@@ -55,12 +58,19 @@ public class AuthServiceImpl implements AuthService {
 			
 			Student s= (Student) user;
 			StudentResponseDTO res = modelmapper.map(s, StudentResponseDTO.class);
+			res.setSchoolName(s.getSchool().getName());
+			res.setClassName(s.getClass().getName());
 			response.setMessage(res);
 			
 		}else if (user.getRole().equals("teacher")) {
 			
 			Teacher t= (Teacher) user;
 			TeacherResponseDTO res = modelmapper.map(t, TeacherResponseDTO.class);
+			List<String> classes=new ArrayList<String>();
+			for (Class c: t.getClasses()) {
+				classes.add(c.getName());
+			}
+			res.setClasses(classes);
 			response.setMessage(res);
 			
 		}else if (user.getRole().equals("manager")) {

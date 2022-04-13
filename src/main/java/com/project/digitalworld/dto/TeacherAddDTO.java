@@ -42,4 +42,7 @@ public class TeacherAddDTO {
 	@Pattern(regexp="[\\d]{8}",message = "CIN is 8 digits")
 	private String CIN;
 	
+	@NotBlank(message = "School Name is mandatory")
+	private String schoolName;
+	
 }

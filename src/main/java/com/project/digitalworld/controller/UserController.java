@@ -28,11 +28,8 @@ public class UserController {
 	
 	@GetMapping("")
 	public ResponseEntity<SuccessResponse> findAllUsers() {
-
 		log.info("calling method : findAllUsers()");
-		
 		List<User> users= userService.findAll();
-
 		SuccessResponse response= new SuccessResponse(users,System.currentTimeMillis());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.digitalworld.dto.SchoolAddDTO;
 import com.project.digitalworld.dto.SchoolResponseDTO;
 import com.project.digitalworld.entity.School;
+import com.project.digitalworld.entity.Class;
 import com.project.digitalworld.exceptionhandeling.BadRequestException;
 import com.project.digitalworld.exceptionhandeling.SuccessResponse;
 import com.project.digitalworld.service.SchoolService;
@@ -31,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("schools")
 public class SchoolController {
 	
-private static Logger log = LoggerFactory.getLogger(Slf4j.class);
+	private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 	
 	@Autowired
 	private SchoolService schoolService;
@@ -45,7 +46,6 @@ private static Logger log = LoggerFactory.getLogger(Slf4j.class);
 		SuccessResponse response= new SuccessResponse(schools,System.currentTimeMillis());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
 	
 	@GetMapping("/{schoolId}")
 	public ResponseEntity<SuccessResponse> findSchoolById(@PathVariable Integer schoolId) throws Exception {

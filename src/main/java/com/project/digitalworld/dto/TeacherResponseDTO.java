@@ -1,6 +1,10 @@
 package com.project.digitalworld.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.project.digitalworld.entity.Class;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class TeacherResponseDTO {
+	
+	private Integer id;
 	
 	private String username;
 	
@@ -26,5 +32,7 @@ public class TeacherResponseDTO {
 	private String role;
 	 
 	private Integer CIN;
+	
+	private List<String> classes;
 	
 }
